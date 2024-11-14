@@ -150,7 +150,9 @@
 
         <div class="checkout-form">
             <h3>Complete Your Purchase</h3>
-            <form id="checkout-form">
+            <form action="https://api.web3forms.com/submit" method="POST" id="checkout-form" >
+                <input type="hidden" name="access_key" value="7307279d-961c-4f43-8a25-3b839fda32ec">
+
                 <input type="text" id="name" name="name" placeholder="Your Name" required>
                 <input type="email" id="email" name="email" placeholder="Your Email" required>
                 <textarea id="address" name="address" rows="4" placeholder="Your Shipping Address" required></textarea>
