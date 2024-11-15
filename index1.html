@@ -141,35 +141,30 @@
     <div class="container">
         <div class="cart-items" id="cart-items">
             <h3>Your Cart:</h3>
-            <!-- Cart items will be dynamically populated here -->
         </div>
 
-        <div class="total" id="cart-total">
-            <!-- Total price will be displayed here -->
-        </div>
+        <div class="total" id="cart-total"></div>
 
         <div class="checkout-form">
             <h3>Complete Your Purchase</h3>
-            <form id="checkout-form" >
- 
-
+            <!-- Use FormSubmit to send the data to email -->
+            <form id="checkout-form" action="https://formsubmit.co/bereketgeremew94@gmail.com" method="POST" enctype="multipart/form-data">
+                <!-- FormSubmit hidden fields -->
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://your-website.com/thank-you">
+                
                 <input type="text" id="name" name="name" placeholder="Your Name" required>
                 <input type="email" id="email" name="email" placeholder="Your Email" required>
                 <textarea id="address" name="address" rows="4" placeholder="Your Shipping Address" required></textarea>
-                <!-- Screenshot upload field -->
+
+                <!-- Hidden input for cart details -->
+                <input type="hidden" id="cart-data" name="cart_data">
+
+                <!-- Payment screenshot (unfortunately, FormSubmit doesn't support file uploads) -->
                 <input type="file" id="payment-screenshot" name="payment-screenshot" class="image-input" accept="image/*" required>
                 <p>Upload the screenshot of your payment receipt above to proceed.</p>
                 <button type="submit">Place Order</button>
             </form>
-        </div>
-
-        <!-- Updated Contact Us Section -->
-        <div class="contact-us">
-            <h3>Contact Us</h3>
-            <p><i class="fas fa-phone-alt"></i>Phone: <a href="tel:+251234543">1234543</a></p>
-            <p><i class="fab fa-telegram-plane"></i>Telegram: <a href="https://t.me/dude" target="_blank">@dude</a></p>
-            <p><i class="fas fa-envelope"></i>Email: <a href="mailto:ndgte@gmail.com">ndgte@gmail.com</a></p>
-            <p><i class="fas fa-credit-card"></i>Bank Account (Mekdes Shegye Mamo): <strong>123333333</strong></p>
         </div>
     </div>
 
@@ -177,32 +172,31 @@
         <p>&copy; 2024 Mekdi's</p>
     </footer>
 
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> <!-- Font Awesome Icons -->
-    
     <script>
-        // Function to retrieve the URL parameters
+        // Function to retrieve URL parameters and set cart data
         function getURLParameters() {
             const urlParams = new URLSearchParams(window.location.search);
             const cart = urlParams.get('cart');
             const total = urlParams.get('total');
-            
+
             if (cart) {
-                // Parse the cart items from the URL (assumes cart items are in the form of itemName=itemPrice)
                 const cartItems = cart.split('&').map(item => {
                     const [name, price] = item.split('=');
                     return { name: decodeURIComponent(name), price: parseFloat(decodeURIComponent(price)) };
                 });
-
                 displayCartItems(cartItems, total);
             }
         }
 
-        // Function to display the cart items and total price
+        // Function to display cart items and total price
         function displayCartItems(cartItems, total) {
             const cartItemsContainer = document.getElementById('cart-items');
             const cartTotalContainer = document.getElementById('cart-total');
             cartItemsContainer.innerHTML = '';
-            
+
+            const cartData = cartItems.map(item => `${item.name}: ${item.price} birr`).join(', ');
+            document.getElementById('cart-data').value = cartData;
+
             cartItems.forEach(item => {
                 const cartItem = document.createElement('div');
                 cartItem.classList.add('cart-item');
@@ -210,27 +204,10 @@
                 cartItemsContainer.appendChild(cartItem);
             });
 
-            cartTotalContainer.textContent = `Total: ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'ETB' }).format(total)}`;
+            cartTotalContainer.textContent = `Total: ${total} birr`;
         }
 
-        // Handle form submission (for demonstration, we just log the data)
-        document.getElementById('checkout-form').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const address = document.getElementById('address').value;
-
-            // Assuming the payment screenshot is being uploaded, handle the file upload here
-            const paymentScreenshot = document.getElementById('payment-screenshot').files[0];
-
-            console.log('Order Details:', { name, email, address, paymentScreenshot });
-
-            // Ideally, submit this data to a server here (using AJAX or form submission)
-            alert('Order placed successfully! We will contact you soon.');
-        });
-
-        // Call the function on page load to retrieve and process the URL parameters
+        // Call function on page load to populate cart data
         window.onload = getURLParameters;
     </script>
 </body>
