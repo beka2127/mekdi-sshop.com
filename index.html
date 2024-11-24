@@ -179,8 +179,8 @@
 
         .checkout button {
             background-color: #0d000b;
-            color: rgba(252, 250, 252, 0.718);
-            padding: 20px 30px;  /* Increased padding for a bigger button */
+            color: rgba(240, 119, 240, 0.718);
+            padding: 50px 90px;  /* Increased padding for a bigger button */
             font-size: 1.2em;    /* Increased font size */
             border: none;
             cursor: pointer;
@@ -279,7 +279,7 @@
                 <p>Size: 50ml</p>
                 <p>Ingredients: Alcohol, Fragrance, Water</p>
             </div>
-            <button onclick="addToCart('KAY ALI', 699)">shop by brand</button>
+            <button onclick="addToCart('KAY ALI', 699)">Add to Cart</button>
         </div>
 
         <!-- Product 2 -->
@@ -291,7 +291,7 @@
                 <p>Size: 60ml</p>
                 <p>Ingredients: Alcohol, Fragrance</p>
             </div>
-            <button onclick="addToCart('WOMAN PERFUME', 650)">shop by brand</button>
+            <button onclick="addToCart('WOMAN PERFUME', 650)">Add to Cart</button>
         </div>
 
         <!-- Product 3 -->
@@ -303,7 +303,7 @@
                 <p>Size: 100ml</p>
                 <p>Ingredients: Essential oils, Alcohol</p>
             </div>
-            <button onclick="addToCart('LUXURY AROMA', 850)">shop by brand</button>
+            <button onclick="addToCart('LUXURY AROMA', 850)">Add to Cart</button>
         </div>
 
         <!-- Product 4 -->
@@ -315,7 +315,7 @@
                 <p>Size: 75ml</p>
                 <p>Ingredients: Alcohol, Fragrance</p>
             </div>
-            <button onclick="addToCart('MYSTIQUE', 550)">shop by brand</button>
+            <button onclick="addToCart('MYSTIQUE', 550)">Add to Cart</button>
         </div>
 
         <!-- Product 5 -->
@@ -327,7 +327,7 @@
                 <p>Size: 60ml</p>
                 <p>Ingredients: Floral essence, Alcohol</p>
             </div>
-            <button onclick="addToCart('FLORAL AURA', 720)">shop by brand</button>
+            <button onclick="addToCart('FLORAL AURA', 720)">Add to Cart</button>
         </div>
 
         <!-- Product 6 -->
@@ -339,17 +339,14 @@
                 <p>Size: 50ml</p>
                 <p>Ingredients: Alcohol, Essential oils</p>
             </div>
-            <button onclick="addToCart('ELEGANT SCENT', 790)">shop by brand</button>
+            <button onclick="addToCart('ELEGANT SCENT', 790)">Add to Cart</button>
         </div>
-        
     </div>
     <!-- Review Section -->
     <div class="review-section">
-        
         <h3>Leave a Review</h3>
         <input type="text" id="review-text" placeholder="Write your review...">
         <button onclick="submitReview()">Submit Review</button>
-        <button onclick="proceedToCheckout()">Proceed to pay</button>
     </div>
 
     <!-- Cart Sidebar -->
@@ -363,7 +360,7 @@
 
     <footer>
         <p>&copy; 2024 Mekdi's</p>
-        
+        <button onclick="proceedToCheckout()">Proceed to pay</button>
     </footer>
 
     <script>
