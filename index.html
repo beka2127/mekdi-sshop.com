@@ -317,9 +317,11 @@
         <h1>Mekdi's</h1>
     </div>
     <div class="dropdown">
-        <span class="dropdown-label">Mode</span>
+        <span class="dropdown-label">catagories</span>
         <div class="dropdown-content">
-            <button onclick="goToFoodProducts()">Food Products</button>
+            <button onclick="goToFoodProducts()">Food and related</button>
+             <button onclick="goToelectronicsProducts()">electronics</button>
+            <button onclick="proceedToCheckout()">Proceed to pay</button>
         </div>
     </div>
     <div class="cart-dropdown">
@@ -516,6 +518,9 @@
         }
     function goToFoodProducts() {
     window.location.href = "food.html";
+}
+        function goToelectronicsProducts() {
+    window.location.href = "electronics.html";
 }
         // Function to submit review
         function submitReview() {
