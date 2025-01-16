@@ -385,26 +385,81 @@
 
     <script>
         let cart = [];
-
+        
+        // Add product to cart
         function addToCart(name, price) {
             cart.push({ name, price });
             updateCart();
         }
-
+        
+        // Remove product from cart
+        function removeFromCart(index) {
+            cart.splice(index, 1); // Remove the item at the given index
+            updateCart();
+        }
+        
+        // Update the cart display
         function updateCart() {
             let cartContent = '';
             let total = 0;
             cart.forEach((item, index) => {
-                cartContent += `<div>${item.name} - ${item.price} birr <button onclick="removeFromCart(${index})">Remove</button></div>`;
+                cartContent += `
+                    <div class="cart-item">
+                        ${item.name} - ${item.price} birr
+                        <button onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                `;
                 total += item.price;
             });
+        
             document.getElementById('cart-items').innerHTML = cartContent;
-            document.getElementById('cart-total').textContent = `Total: ${total} birr`;
+            document.getElementById('cart-total').innerHTML = `
+                <strong>Total: ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'ETB' }).format(total)}</strong>
+            `;
         }
-
+        
+        // Toggle cart sidebar
         function toggleCart() {
             document.getElementById('cart-sidebar').classList.toggle('show');
         }
+        
+        // Function to proceed to checkout and pass cart data
+        function proceedToCheckout() {
+            // Prepare cart items data
+            let cartData = cart.map(item => `${encodeURIComponent(item.name)}=${encodeURIComponent(item.price)}`).join('&');
+            let totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
+        
+            // Append the cart data and total price as query parameters
+            let checkoutUrl = `index1.html?cart=${cartData}&total=${totalPrice}`;
+            
+            // Redirect to the checkout page with the cart data
+            window.location.href = checkoutUrl;
+        }
+    
+        // Navigation functions for categories
+        function goToFoodProducts() {
+            window.location.href = "food.html";
+        }
+    
+        function goToelectronicsProducts() {
+            window.location.href = "electronics.html";
+        }
+    
+        function goTocars() {
+            window.location.href = "cars.html";
+        }
+    
+        // Function to submit review
+        function submitReview() {
+            const reviewText = document.getElementById("review-text").value;
+            if (reviewText) {
+                alert(`Review submitted: ${reviewText}`);
+                document.getElementById("review-text").value = ""; // Clear the input field
+            } else {
+                alert("Please write a review before submitting.");
+            }
+        }
     </script>
+    
 </body>
 </html>
