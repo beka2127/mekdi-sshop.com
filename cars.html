@@ -7,24 +7,25 @@
     <style>
         /* Basic Styles */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #d87ad8d4;
+            background-color: #f5f5f5;
         }
 
         header {
-            background-color: ##e92f2f;
+            background-color: #e92f2f;
             color: white;
-            padding: 1em;
+            padding: 1.5em;
             text-align: left;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 10;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            transition: background-color 0.3s ease;
         }
 
         .logo-container {
@@ -41,7 +42,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
         .logo::before {
@@ -55,28 +55,56 @@
             top: -10px;
         }
 
-        .cart-dropdown {
+        .dropdown {
             position: relative;
             display: inline-block;
             cursor: pointer;
-            font-size: 1.1em;
         }
 
-        .cart-dropdown-content {
+        .dropdown-label {
+            cursor: pointer;
+            font-size: 1.1em;
+            color: white;
+            padding: 0.5em 1em;
+            background-color: #333;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-label:hover {
+            background-color: #555;
+        }
+
+        .dropdown-content {
             display: none;
             position: absolute;
-            right: 0;
-            background-color: #333;
-            color: white;
-            min-width: 250px;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
+            top: 100%;
+            left: 0;
+            background-color: #f9f9f9;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
             z-index: 1;
         }
 
-        .cart-dropdown:hover .cart-dropdown-content {
+        .dropdown:hover .dropdown-content {
             display: block;
+        }
+
+        .dropdown-content button {
+            background: none;
+            border: none;
+            color: black;
+            padding: 10px 15px;
+            text-align: left;
+            width: 100%;
+            font-size: 1em;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content button:hover {
+            background-color: #ddd;
         }
 
         .container {
@@ -96,7 +124,7 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .product:hover {
@@ -137,7 +165,7 @@
             background-color: #555;
         }
 
-        /* Sidebar Cart */
+        /* Cart Sidebar */
         #cart-sidebar {
             position: fixed;
             right: 0;
@@ -180,8 +208,8 @@
         .checkout button {
             background-color: #0d000b;
             color: rgba(240, 119, 240, 0.718);
-            padding: 50px 90px;  /* Increased padding for a bigger button */
-            font-size: 1.2em;    /* Increased font size */
+            padding: 20px 40px;
+            font-size: 1.2em;
             border: none;
             cursor: pointer;
             border-radius: 5px;
@@ -191,44 +219,6 @@
         .checkout button:hover {
             background-color: #555;
         }
-
-        /* Review Section */
-        .review-section {
-            width: 80%;
-            margin: auto;
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        .review-section h3 {
-            color: #100101;
-            font-size: 1.4em;
-        }
-
-        .review-section input[type="text"] {
-            width: 50%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .review-section button {
-            padding: 10px 20px;
-            font-size: 1em;
-            background-color: #0e0101;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-
-        .review-section button:hover {
-            background-color: #555;
-        }
-
-
 
         footer {
             background-color: #3A3A3A;
@@ -244,64 +234,6 @@
                 flex-direction: column;
                 align-items: center;
             }
-            /* Dropdown Styles */
-.dropdown {
-    position: relative;
-    display: inline-block;
-    margin-right: 20px;
-}
-
-.dropdown-label {
-    cursor: pointer;
-    font-size: 1.1em;
-    color: white;
-    padding: 0.5em 1em;
-    background-color: #333;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.dropdown-label:hover {
-    background-color: #555;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #f9f9f9;
-    min-width: 150px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
-    z-index: 1;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown-content button {
-    background: none;
-    border: none;
-    color: black;
-    padding: 10px 15px;
-    text-align: left;
-    width: 100%;
-    font-size: 1em;
-    cursor: pointer;
-    border-bottom: 1px solid #ddd;
-    transition: background-color 0.3s ease;
-}
-
-.dropdown-content button:hover {
-    background-color: #ddd;
-}
-
-.dropdown-content button:last-child {
-    border-bottom: none;
-}
-
 
             .product {
                 width: 80%;
@@ -312,163 +244,149 @@
 </head>
 <body>
     <header>
-    <div class="logo-container">
-        <div class="logo">💧</div>
-        <h1>Mekdi's</h1>
-    </div>
-    <div class="dropdown">
-        <span class="dropdown-label">catagories</span>
-        <div class="dropdown-content">
-            <button onclick="goTocosmeticsProducts()">cosmetics related</button>
-             <button onclick="goToelectronicsProducts()">electronics</button>
-            <button onclick="proceedToCheckout()">Proceed to pay</button>
+        <div class="logo-container">
+            <div class="logo">💧</div>
+            <h1>Mekdi's</h1>
         </div>
-    </div>
-    <div class="cart-dropdown">
-        <span>🛒 Cart</span>
-        <div class="cart-dropdown-content" id="cart-items">
-            
-            <!-- Cart items will be dynamically added here -->
-            <div id="cart-total"></div>
+        <div class="dropdown">
+            <span class="dropdown-label">Categories</span>
+            <div class="dropdown-content">
+                <button onclick="goToCosmeticsProducts()">Cosmetics</button>
+                <button onclick="goToElectronicsProducts()">Electronics</button>
+                <button onclick="proceedToCheckout()">Proceed to Pay</button>
+            </div>
         </div>
-    </div>
-</header>
-
+        <div class="cart-dropdown">
+            <span>🛒 Cart</span>
+            <div class="cart-dropdown-content" id="cart-items">
+                <!-- Cart items will be dynamically added here -->
+                <div id="cart-total"></div>
+            </div>
+        </div>
+    </header>
 
     <!-- Product List -->
     <div class="container" id="product-list">
         <!-- Product 1 -->
-        <div class="product" data-name="car" data-price="2000000">
-        <img src="car.png" alt="Perfume 1">
-        <h3></h3>
-        <p>2000000 birr</p>
-            <div class="product-details">
-                <p></p>
-                <p>contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop(on telegram)</p>
-            </div>
-            <button onclick="addToCart('car 1', 12m)">Buy now</button>
-        </div>
-        <!-- Product 1 -->
-        <div class="product" data-name="car1" data-price="2.8 million">
-        <img src="isuzu.png" alt="Perfume 1">
-      
-        <h3></h3>
-        <p>2.8 million</p>
-            <div class="product-details">
-                <p></p>
-                <p>2008 model long isuzu telegram: t.me/mekdi's_shop</p>
-            </div>
-            <button onclick="addToCart('isuzu', 2.8 million)">Buy now</button>
-        </div>
-         <!-- Product 1 -->
-        <div class="product" data-name="car2" data-price="">
-        <img src="vitz.png" alt="Perfume 1">
-      
-        <h3></h3>
-        <p>price ask me on telegram</p>
-            <div class="product-details">
-                <p></p>
-                <p>vitz 2004 model telegram: t.me/mekdi's_shop</p>
-            </div>
-            <button onclick="addToCart('vitz', million)">Buy now</button>
-        </div>
+<div class="product" data-name="car" data-price="2000000">
+    <img src="car.png" alt="Car 1">
+    <h3>Car 1</h3>
+    <p>2000000 birr</p>
+    <div class="product-details">
+        <p>Contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop (on telegram)</p>
+    </div>
+    <button onclick="addToCart('Car 1', 2000000)">Buy now</button>
+</div>
 
-        <!-- Product 1 -->
-        <div class="product" data-name="car" data-price="23 million">
-        <img src="house1.png" alt="Perfume 1">
-      
-        <h3></h3>
-        <p>23 million</p>
-            <div class="product-details">
-                <p></p>
-                <p>G+2 150 ካሬ ሙሉ በሙሉ የተጠናቀቀ አያት ዳያስፖራ ሰፈር</p>
-            </div>
-            <button onclick="addToCart('car 1', 23 million)">Buy now</button>
-        </div>
-        <!-- Product 1 -->
-        <div class="product" data-name="car" data-price="14.5 million">
-       
-        <img src="howsw2.png" alt="Perfume 1">
-        <h3></h3>
-        <p>14.5 million</p>
-            <div class="product-details">
-                <p></p>
-                <p>G+2 150 ካሬ  አያት ዳያስፖራ ሰፈር contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop(on telegram)</p>
-            </div>
-            <button onclick="addToCart('car 1', 14.5 million)">Buy now</button>
-        </div>
-        <!-- Product 1 -->
-        <div class="product" data-name="car" data-price="26 million">
-        <img src="house3.png" alt="Perfume 1">
-        
-        <h3></h3>
-        <p>26 million</p>
-            <div class="product-details">
-                <p></p>
-                <p>G+2 150 ካሬ ሙሉ በሙሉ የተጠናቀቀ አያት ዳያስፖራ ሰፈር contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop(on telegram)</p>
-            </div>
-            <button onclick="addToCart('car 1', 26 million)">Buy now</button>
-        </div>
-        <!-- Product 1 -->
-        <div class="product" data-name="car" data-price="20 millio">
-        
-        <img src="house4.png" alt="Perfume 1">
-        <h3></h3>
-        <p>20 million</p>
-            <div class="product-details">
-                <p></p>
-                <p>G+2 150 ካሬ አያት ዳያስፖራ ሰፈር contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop(on telegram)</p>
-            </div>
-            <button onclick="addToCart('car 1', 20 millio)">Buy now</button>
-        </div>
-        <!-- Product 1 -->
-        <div class="product" data-name="car" data-price="12.3 million">
-    
-        <img src="house5.png" alt="Perfume 1">
-        <h3></h3>
-        <p>12.3 million</p>
-            <div class="product-details">
-                <p></p>
-                <p>G+2 150 ካሬ አያት ዳያስፖራ ሰፈር contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop(on telegram)</p>
-            </div>
-            <button onclick="addToCart('car 1', 12.3 million)">Buy now</button>
-        </div>
-        <!-- Product 1 -->
-        <div class="product" data-name="car" data-price="14 million">
-        <img src="hose6.png" alt="Perfume 1">
-       
-        <h3></h3>
-        <p>14 million</p>
-            <div class="product-details">
-                <p></p>
-                <p>G+2 150 ካሬ አያት ዳያስፖራ ሰፈር contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop(on telegram)</p>
-            </div>
-            <button onclick="addToCart('car 1', 14 million)">Buy now</button>
-        </div>
-        <!-- Product 1 -->
-        <div class="product" data-name="car" data-price="15 millionr">
-        <img src="house7.png" alt="Perfume 1">
+<!-- Product 2 -->
+<div class="product" data-name="car1" data-price="2800000">
+    <img src="isuzu.png" alt="Isuzu 2008 Model">
+    <h3>Isuzu 2008 Model</h3>
+    <p>2.8 million</p>
+    <div class="product-details">
+        <p>2008 model long Isuzu. Telegram: t.me/mekdi's_shop</p>
+    </div>
+    <button onclick="addToCart('Isuzu', 2800000)">Buy now</button>
+</div>
 
-        <h3></h3>
-        <p>15 millionr</p>
-            <div class="product-details">
-                <p></p>
-                <p>150 ካሬ G+2 አያት ዳያስፖራ ሰፈር contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop(on telegram)</p>
-            </div>
-            <button onclick="addToCart('car 1', 15 millionr)">Buy now</button>
-        </div>
-          <!-- Product 1 -->
-        <div class="product" data-name="car" data-price="22 million">
-        <img src="house8.png" alt="Perfume 1">
+<!-- Product 3 -->
+<div class="product" data-name="car2" data-price="Ask">
+    <img src="vitz.png" alt="Vitz 2004 Model">
+    <h3>Vitz 2004 Model</h3>
+    <p>Price: Ask me on Telegram</p>
+    <div class="product-details">
+        <p>Vitz 2004 model. Telegram: t.me/mekdis_shop</p>
+    </div>
+    <button onclick="addToCart('Vitz', 'Contact for Price')">Buy now</button>
+</div>
 
-        <h3></h3>
-        <p>22 million</p>
-            <div class="product-details">
-                <p></p>
-                <p>150 ካሬ G+3  አያት ዳያስፖራ ሰፈር contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop(on telegram)</p>
-            </div>
-            <button onclick="addToCart('car 1', 22 million)">Buy now</button>
-        </div>
+<!-- Product 4 -->
+<div class="product" data-name="house1" data-price="23000000">
+    <img src="house1.png" alt="House G+2">
+    <h3>House G+2</h3>
+    <p>23 million</p>
+    <div class="product-details">
+        <p>G+2, 150m², fully finished, located at Ayat Diaspora.</p>
+    </div>
+    <button onclick="addToCart('House G+2', 23000000)">Buy now</button>
+</div>
+
+<!-- Product 5 -->
+<div class="product" data-name="house2" data-price="14500000">
+    <img src="howsw2.png" alt="House G+2">
+    <h3>House G+2</h3>
+    <p>14.5 million</p>
+    <div class="product-details">
+        <p>G+2, 150m², Ayat Diaspora. Contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop.</p>
+    </div>
+    <button onclick="addToCart('House G+2', 14500000)">Buy now</button>
+</div>
+
+<!-- Product 6 -->
+<div class="product" data-name="house3" data-price="26000000">
+    <img src="house3.png" alt="House G+2">
+    <h3>House G+2</h3>
+    <p>26 million</p>
+    <div class="product-details">
+        <p>G+2, 150m², fully finished, located at Ayat Diaspora. Contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop.</p>
+    </div>
+    <button onclick="addToCart('House G+2', 26000000)">Buy now</button>
+</div>
+
+<!-- Product 7 -->
+<div class="product" data-name="house4" data-price="20000000">
+    <img src="house4.png" alt="House G+2">
+    <h3>House G+2</h3>
+    <p>20 million</p>
+    <div class="product-details">
+        <p>G+2, 150m², Ayat Diaspora. Contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop.</p>
+    </div>
+    <button onclick="addToCart('House G+2', 20000000)">Buy now</button>
+</div>
+
+<!-- Product 8 -->
+<div class="product" data-name="house5" data-price="12300000">
+    <img src="house5.png" alt="House G+2">
+    <h3>House G+2</h3>
+    <p>12.3 million</p>
+    <div class="product-details">
+        <p>G+2, 150m², Ayat Diaspora. Contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop.</p>
+    </div>
+    <button onclick="addToCart('House G+2', 12300000)">Buy now</button>
+</div>
+
+<!-- Product 9 -->
+<div class="product" data-name="house6" data-price="14000000">
+    <img src="hose6.png" alt="House G+2">
+    <h3>House G+2</h3>
+    <p>14 million</p>
+    <div class="product-details">
+        <p>G+2, 150m², Ayat Diaspora. Contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop.</p>
+    </div>
+    <button onclick="addToCart('House G+2', 14000000)">Buy now</button>
+</div>
+
+<!-- Product 10 -->
+<div class="product" data-name="house7" data-price="15000000">
+    <img src="house7.png" alt="House G+2">
+    <h3>House G+2</h3>
+    <p>15 million</p>
+    <div class="product-details">
+        <p>150m², G+2, Ayat Diaspora. Contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop.</p>
+    </div>
+    <button onclick="addToCart('House G+2', 15000000)">Buy now</button>
+</div>
+
+<!-- Product 11 -->
+<div class="product" data-name="house8" data-price="22000000">
+    <img src="house8.png" alt="House G+3">
+    <h3>House G+3</h3>
+    <p>22 million</p>
+    <div class="product-details">
+        <p>150m², G+3, Ayat Diaspora. Contact us at 0920631718 or mekdesshegye@gmail.com or t.me/mekdis_shop.</p>
+    </div>
+    <button onclick="addToCart('House G+3', 22000000)">Buy now</button>
+</div>
 
 
     <!-- Review Section -->
@@ -476,7 +394,6 @@
         <h3>Leave a Review</h3>
         <input type="text" id="review-text" placeholder="Write your review...">
         <button onclick="submitReview()">Submit Review</button>
-        <button onclick="proceedToCheckout()">Proceed to pay</button>
     </div>
 
     <!-- Cart Sidebar -->
@@ -485,29 +402,28 @@
         <div id="cart-items"></div>
         <div id="cart-total"></div>
         <button onclick="toggleCart()">Close</button>
-        
     </div>
 
     <footer>
         <p>&copy; 2024 Mekdi's</p>
-        
     </footer>
 
     <script>
         let cart = [];
-    
+
         // Add product to cart
         function addToCart(name, price) {
             cart.push({ name, price });
             updateCart();
+            alert(`${name} added to cart`);
         }
-    
+
         // Remove product from cart
         function removeFromCart(index) {
             cart.splice(index, 1); // Remove the item at the given index
             updateCart();
         }
-    
+
         // Update the cart display
         function updateCart() {
             let cartContent = '';
@@ -521,47 +437,44 @@
                 `;
                 total += item.price;
             });
-    
+
             document.getElementById('cart-items').innerHTML = cartContent;
             document.getElementById('cart-total').innerHTML = `
                 <strong>Total: ${new Intl.NumberFormat('en-US', { style: 'currency', currency: 'ETB' }).format(total)}</strong>
             `;
         }
-    
+
         // Toggle cart sidebar
         function toggleCart() {
             document.getElementById('cart-sidebar').classList.toggle('show');
         }
-    
-        // Function to proceed to checkout and pass cart data
+
+        // Proceed to checkout
         function proceedToCheckout() {
-            // Prepare cart items data
             let cartData = cart.map(item => `${encodeURIComponent(item.name)}=${encodeURIComponent(item.price)}`).join('&');
             let totalPrice = cart.reduce((sum, item) => sum + item.price, 0);
-    
-            // Append the cart data and total price as query parameters
             let checkoutUrl = `index1.html?cart=${cartData}&total=${totalPrice}`;
-            
-            // Redirect to the checkout page with the cart data
             window.location.href = checkoutUrl;
         }
-    function goTocosmeticsProducts() {
-    window.location.href = "index.html";
-}
-        function goToelectronicsProducts() {
-    window.location.href = "electronics.html";
-}
-        // Function to submit review
+
+        // Redirect for categories
+        function goToCosmeticsProducts() {
+            window.location.href = "cosmetics.html";
+        }
+
+        function goToElectronicsProducts() {
+            window.location.href = "electronics.html";
+        }
+
+        // Review submission
         function submitReview() {
-            const reviewText = document.getElementById("review-text").value;
+            let reviewText = document.getElementById('review-text').value;
             if (reviewText) {
-                alert(`Review submitted: ${reviewText}`);
-                document.getElementById("review-text").value = ""; // Clear the input field
+                alert("Review submitted: " + reviewText);
             } else {
-                alert("Please write a review before submitting.");
+                alert("Please enter a review.");
             }
         }
     </script>
-    
 </body>
 </html>
