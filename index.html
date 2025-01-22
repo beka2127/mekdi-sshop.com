@@ -371,7 +371,12 @@
           <button onclick="addToCart('sunscreen', 2500)">Buy now</button>
         </div>
     </div>
-
+    <div id="message-box" style="display: none; position: fixed; top: 20%; left: 50%; transform: translate(-50%, -50%); padding: 20px; background: white; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); z-index: 200;">
+        <p id="message-text"></p>
+        <button onclick="closeMessageBox()" style="background-color: #e63946; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">OK</button>
+        <button onclick="proceedToCheckout()">Proceed to pay</button>
+    </div>
+    
     <div id="cart-sidebar">
         <h2>Shopping Cart</h2>
         <div id="cart-items"></div>
@@ -386,11 +391,27 @@
     <script>
         let cart = [];
         
-        // Add product to cart
-        function addToCart(name, price) {
-            cart.push({ name, price });
-            updateCart();
-        }
+      // Add product to cart
+function addToCart(name, price) {
+    cart.push({ name, price });
+    updateCart();
+    showMessageBox(`${name} has been added to your cart! go to the proceed to pay to finish shopping`);
+}
+
+// Show message box
+function showMessageBox(message) {
+    const messageBox = document.getElementById("message-box");
+    const messageText = document.getElementById("message-text");
+    messageText.textContent = message;
+    messageBox.style.display = "block";
+}
+
+// Close message box
+function closeMessageBox() {
+    const messageBox = document.getElementById("message-box");
+    messageBox.style.display = "none";
+}
+
         
         // Remove product from cart
         function removeFromCart(index) {
